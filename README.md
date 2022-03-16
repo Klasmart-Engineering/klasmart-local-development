@@ -18,6 +18,9 @@ Create a virtual environment
 Activate venv
 ```source venv39/bin/activate```
 
+Install cookiecutter
+```pip install cookiecutter```
+
 Create a directory for storing a local shared Terraform state
 ```mkdir ~/Users/my_system_name/terraform_shared_state```
 
