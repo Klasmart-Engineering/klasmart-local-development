@@ -31,4 +31,7 @@ Follow the instructions in the generated README.
 Create a frontend skeleton site
 ```cookiecutter gh:KL-Engineering/kidsloop-frontend-template```
 
+Add the paths for your generated Tiltfile/s to the Tilefile in this repo. Change the names accordingly:
+```include('./kidsloop-backend/Tiltfile')```
+```include('./kidsloop-frontend/Tiltfile')```
 
