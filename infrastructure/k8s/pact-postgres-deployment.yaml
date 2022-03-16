@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: pact-postgres
+  name: pact-postgres
+  # namespace: kidskube-local
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: pact-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: pact-postgres
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_PASSWORD
+          value: pact-postgres
+        - name: POSTGRES_USER
+          value: pact-postgres
+        image: postgres
+        name: pact-postgres
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/pact-postgresql/data
+          name: pact-postgres-claim0
+      restartPolicy: Always
+      volumes:
+      - name: pact-postgres-claim0
+        persistentVolumeClaim:
+          claimName: pact-postgres-claim0
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    io.kompose.service: pact-postgres-claim0
+  name: pact-postgres-claim0
+  # namespace: kidskube-local
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: pact-postgres
+  name: pact-postgres
+  # namespace: kidskube-local
+spec:
+  clusterIP: None
+  ports:
+  - name: headless
+    port: 4455
+    targetPort: 0
+  selector:
+    io.kompose.service: pact-postgres
