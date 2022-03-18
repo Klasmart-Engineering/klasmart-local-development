@@ -22,7 +22,7 @@ Install cookiecutter
 ```pip install cookiecutter```
 
 Create a directory for storing a local shared Terraform state
-```mkdir ~/Users/my_system_name/terraform_shared_state```
+```mkdir ${HOME}/terraform_shared_state```
 
 Navigate to the directory where you want to keep your kidsloop repositories.
 
