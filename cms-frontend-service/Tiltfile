@@ -1,0 +1,5 @@
+#docker_build('cms-frontend-service', '../../cms-frontend-service/deploy')
+
+k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/cms-frontend', name='cms-frontend-deployment', values='./values.yaml'))
+
+k8s_resource('cms-frontend-deployment', labels=['cms-frontend-service'], port_forwards=8008)

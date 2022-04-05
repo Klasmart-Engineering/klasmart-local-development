@@ -1,0 +1,30 @@
+fullNameOverride: cms-backend-deployment
+
+databases:
+  cmsDb:
+    hostname: cms-backend-mysql
+  cmsRedis:
+    hostname: redis
+
+cmsBackend:
+  repository: cms-backend-service
+  pullPolicy: Always
+  tag: latest
+
+dependencies:
+  assessment:
+    serviceName: user-service-deployment-svc
+  userService:
+    serviceName: user-service-deployment-svc
+    apiKey:
+      secretName: kidsloop-user-service-api
+
+migrations:
+  enabled: false
+
+serviceAccount:
+  annotations:
+    something: "something something"
+
+ingress:
+  enabled: false

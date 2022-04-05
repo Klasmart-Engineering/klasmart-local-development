@@ -1,0 +1,5 @@
+docker_build('assessment-service', '../../kidsloop-assessment-service')
+
+k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/assessment', name='assessment-service-deployment', values='./values.yaml'))
+
+k8s_resource('assessment-service-deployment', labels=['assessment-service'], port_forwards=8001, resource_deps=['user-service-postgres'])

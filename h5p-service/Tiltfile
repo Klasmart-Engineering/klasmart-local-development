@@ -1,0 +1,12 @@
+docker_build('h5p-service', '../../kidsloop-h5p-library/')
+
+k8s_yaml('./config.yaml')
+k8s_yaml('./secrets.yaml')
+  
+load('ext://helm_remote', 'helm_remote')
+helm_remote(chart='mongodb', repo_url='https://charts.bitnami.com/bitnami', repo_name='bitnami',  values='./mongodb-values.yaml')
+k8s_resource('mongodb', labels=['mongodb'], port_forwards=27017)
+
+k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/h5p-service', name='h5p-service-deployment', values='./values.yaml'))
+
+k8s_resource('h5p-service-deployment', labels=['h5p-service'], port_forwards=8008, resource_deps=['mongodb'])

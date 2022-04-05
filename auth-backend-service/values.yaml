@@ -1,0 +1,14 @@
+fullNameOverride: auth-service-deployment
+
+databases:
+  userDb:
+    hostname: user-service-postgres
+
+authBackend:
+  repository: auth-service
+  pullPolicy: Always
+  tag: latest
+
+ingress:
+  enabled: false
+

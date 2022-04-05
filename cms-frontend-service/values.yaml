@@ -1,0 +1,16 @@
+fullNameOverride: cms-frontend-deployment
+
+cmsFrontend:
+  repository: registry.local:5000/cms-frontend
+  pullPolicy: Always
+  tag: latest
+
+migrations:
+  enabled: false
+
+#serviceAccount:
+#  annotations:
+#    something: "something something"
+
+ingress:
+  enabled: false

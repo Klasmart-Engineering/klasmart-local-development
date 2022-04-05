@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: xapi-service-postgres
+  name: xapi-service-postgres
+spec:
+  ports:
+    - name: default
+      port: 5432
+      targetPort: 5432
+  selector:
+    io.kompose.service: xapi-service-postgres
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: xapi-service-postgres
+  name: xapi-service-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: xapi-service-postgres
+  template:
+    metadata:
+      labels:
+        io.kompose.service: xapi-service-postgres
+    spec:
+      containers:
+        - env:
+          - name: POSTGRES_DB
+            value: xapi_service_db
+          - name: POSTGRES_PASSWORD
+            value: kidsloop
+          - name: POSTGRES_USER
+            value: kidsloop
+          image: postgres
+          name: postgres
+          ports:
+            - containerPort: 5432
+      restartPolicy: Always

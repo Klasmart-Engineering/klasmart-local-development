@@ -1,0 +1,19 @@
+fullNameOverride: assessment-service-deployment
+
+assessment:
+  repository: assessment-service
+  pullPolicy: Always
+  tag: latest
+
+databases:
+  userDb:
+    hostname: user-service-postgres
+  cmsDb:
+    hostname: cms-backend-mysql
+
+serviceAccount:
+  annotations:
+    something: "something something"
+
+ingress:
+  enabled: false

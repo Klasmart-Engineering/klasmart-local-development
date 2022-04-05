@@ -30,7 +30,10 @@ for cluster in $(k3d ls 2>/dev/null | tail -n +4 | head -n -1 | awk '{print $2}'
   fi
 done
 
-k3d create --enable-registry --name=${CLUSTER_NAME} "$@"
+k3d create --enable-registry --name=${CLUSTER_NAME} \
+    --volume "$PWD"/backup:/tmp/backup \
+    --server-arg "--kube-proxy-arg=conntrack-max-per-core=0" \
+    --agent-arg "--kube-proxy-arg=conntrack-max-per-core=0"  "$@"
 
 echo
 echo "Waiting for Kubeconfig to be ready..."

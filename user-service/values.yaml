@@ -1,0 +1,21 @@
+fullNameOverride: user-service-deployment
+
+userService:
+  repository: user-service
+  pullPolicy: Always
+  tag: latest
+
+  database:
+    hostname: user-service-postgres
+    port: 5432
+
+  assets:
+    bucketName: bucket1
+    bucketRegion: bucket2
+
+serviceAccount:
+  annotations:
+    something: "something something"
+
+ingress:
+  enabled: false

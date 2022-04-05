@@ -1,0 +1,10 @@
+fullNameOverride: h5p-service-deployment
+
+h5p:
+  repository: h5p-service
+  pullPolicy: Always
+  tag: latest
+
+ingress:
+  enabled: false
+

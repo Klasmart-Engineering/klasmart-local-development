@@ -1,0 +1,6 @@
+docker_build('pdf-service', '../../kidsloop-pdf-service/')
+
+k8s_yaml('./secrets.yaml')
+k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/pdf-service', name='pdf-service-deployment', values='./values.yaml'))
+
+k8s_resource('pdf-service-deployment', labels=['pdf-service'], port_forwards=8004, resource_deps=['user-service-postgres'])

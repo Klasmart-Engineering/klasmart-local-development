@@ -1,0 +1,14 @@
+fullNameOverride: xapi-service-deployment
+
+xapi:
+  repository: xapi-service
+  pullPolicy: Always
+  tag: latest
+
+  database:
+    enabled: true
+    hostname: xapi-service-postgres
+
+ingress:
+  enabled: false
+

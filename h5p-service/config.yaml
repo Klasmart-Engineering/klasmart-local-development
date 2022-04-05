@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  db_seed_name: kidsloop-database-samples
+  main_name: kidskube-uk-kidskube-loadtest-h5p-content
+  role_arn: arn:aws:iam::828974637366:role/kidskube-uk-kidskube-loadtest-kidskube-x-h5pcopy-role
+  s3_region: eu-west-2
+  source_name: kidsloop-sre-h5p-source
+  source_region: eu-west-2
+  temp_name: kidskube-uk-kidskube-loadtest-temp-h5p-content
+kind: ConfigMap
+metadata:
+  name: h5p-s3-details

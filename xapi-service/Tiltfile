@@ -1,0 +1,8 @@
+docker_build('xapi-service', '../../kidsloop-xapi-service/')
+
+k8s_yaml('./postgres.yaml')
+k8s_yaml('./secrets.yaml')
+k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/xapi', name='xapi-service-deployment', values='./values.yaml'))
+
+k8s_resource('xapi-service-postgres', labels=['xapi-service'])
+k8s_resource('xapi-service-deployment', labels=['xapi-service'], port_forwards=8006, resource_deps=['xapi-service-postgres'])

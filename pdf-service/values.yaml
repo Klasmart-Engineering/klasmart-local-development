@@ -1,0 +1,13 @@
+fullNameOverride: pdf-service-deployment
+
+pdfService:
+  repository: pdf-service
+  pullPolicy: Always
+  tag: latest
+  databases:
+    userDb:
+      hostname: user-service-postgres
+
+ingress:
+  enabled: false
+
