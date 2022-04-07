@@ -1,5 +1,15 @@
+# load extensions
+# TODO: doesn't work as described in docs... :-(
+# load('ext://git_checkout', 'git_checkout')
+
 # required
 include('./shared-infrastructure/Tiltfile')
+
+# requires helm chart repository
+if not os.path.exists('../kidsloop-helm-charts'):
+    # TODO: doesn't work, so just fail for now
+    # git_checkout('git@github.com:KL-Infrastructure/kidsloop-helm-charts.git', '../kidsloop-helm-charts')
+    fail('missing repository, please clone: KL-Infrastructure/kidsloop-helm-charts')
 
 # optional, loaded if repositories exist on disk at the given path
 if os.path.exists('../kidsloop-assessment-service'):
