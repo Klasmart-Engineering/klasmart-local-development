@@ -38,3 +38,17 @@ Add the paths for your generated Tiltfile/s to the Tilefile in this repo. Change
 ```include('./kidsloop-backend/Tiltfile')```
 ```include('./kidsloop-frontend/Tiltfile')```
 
+## Tilt
+
+> :warning: Work In Progress!
+
+The main `Tiltfile` is configured to do two things:
+
+1. Clone the `KL-Infrastructure/kidsloop-helm-charts`:
+   - You must have access to the KL-Infrastructure GitHub Organisation,
+   - Helm charts are required to create each service in the cluster, 
+   - It will not clone if the repository is already present.
+3. Optionally, load each service:
+   - The service repository must be cloned for Tilt to load the resource into the cluster,
+   - This allows you to only work on a single service at a time, i.e. if you only have `cms-backend-service` clones, only that will load. If an expected resource isn't loading, look at the Tilt logs for details,
+   - If you have more clones, you can still use Tilt features to only load resources you care about, e.g. `tilt up cms-backend-service` - see [documentation](https://docs.tilt.dev) for further details.
