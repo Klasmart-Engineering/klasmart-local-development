@@ -5,11 +5,11 @@ databases:
     hostname: user-service-postgres
 
 authFrontend:
-#  repository: 942095822719.dkr.ecr.eu-west-2.amazonaws.com/kidsloop-auth-frontend
-  repository:  registry.local:5000/auth-frontend
+#  repository:  registry.local:5000/auth-frontend
+  repository:  auth-frontend
   pullPolicy: Always
 #  tag: azure-loadtest-b343a19
-  tag: latest
+  tag: master
 
 ingress:
   enabled: false

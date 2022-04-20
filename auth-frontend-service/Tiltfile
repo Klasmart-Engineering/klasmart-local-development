@@ -1,4 +1,4 @@
-#docker_build('auth-frontend', '../../kidsloop-auth-frontend/')
+docker_build('auth-frontend', '../../iam-auth-frontend/deploy')
 
 k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/auth-frontend', name='auth-frontend-deployment', values='./values.yaml'))
 

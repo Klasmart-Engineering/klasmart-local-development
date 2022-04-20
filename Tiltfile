@@ -14,6 +14,10 @@ include('./auth-frontend-service/Tiltfile')
 #  labels=['secrets'],
 #)
 
+local_resource(name='import_images', cmd='./import_images.sh')
+
+
+
 k8s_yaml('./infrastructure/k8s/pact-postgres-deployment.yaml')
 k8s_yaml('./infrastructure/k8s/pact-broker-deployment.yaml')
 
