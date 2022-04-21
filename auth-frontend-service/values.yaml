@@ -1,10 +1,12 @@
 fullNameOverride: auth-frontend-deployment
+domain: fe.sso.kidsloop.live
 
 databases:
   userDb:
     hostname: user-service-postgres
 
 authFrontend:
+  domain: "fe.sso.kidsloop.live"
 #  repository:  registry.local:5000/auth-frontend
   repository:  auth-frontend
   pullPolicy: Always
@@ -12,5 +14,9 @@ authFrontend:
   tag: master
 
 ingress:
-  enabled: false
+  enabled: true
+  tls:
+    - secretName: auth-frontend-deployment-tls
+      hosts:
+        - "fe.sso.kidsloop.live"
 

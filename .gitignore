@@ -1,1 +1,4 @@
 .idea/
+scripts/*.pem
+scripts/.certs
+scripts/istio-*
