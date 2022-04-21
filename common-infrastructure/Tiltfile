@@ -1,0 +1,12 @@
+load('ext://helm_remote', 'helm_remote')
+
+k8s_yaml('./pact-broker/pact-postgres-deployment.yaml')
+k8s_yaml('./pact-broker/pact-broker-deployment.yaml')
+
+k8s_resource('pact-postgres', labels=['shared-infrastructure'])
+k8s_resource('pact-broker', labels=['shared-infrastructure'], port_forwards='9292:9292', resource_deps=['pact-postgres'])
+
+helm_remote(chart='localstack', repo_url='https://helm.localstack.cloud', repo_name='localstack-repo', values='./localstack/values.yaml')
+k8s_resource('localstack', labels=['shared-infrastructure'], port_forwards=4566)
+
+
