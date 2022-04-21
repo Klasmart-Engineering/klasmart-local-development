@@ -17,12 +17,11 @@ include('./auth-frontend-service/Tiltfile')
 local_resource(name='import_images', cmd='./import_images.sh')
 
 
-
-k8s_yaml('./infrastructure/k8s/pact-postgres-deployment.yaml')
-k8s_yaml('./infrastructure/k8s/pact-broker-deployment.yaml')
+k8s_yaml('./common-infrastructure/pact-broker/pact-postgres-deployment.yaml')
+k8s_yaml('./common-infrastructure/pact-broker/pact-broker-deployment.yaml')
 
 load('ext://helm_remote', 'helm_remote')
-helm_remote(chart='localstack', repo_url='https://helm.localstack.cloud', repo_name='localstack-repo', values='localstack/values.yaml')
+helm_remote(chart='localstack', repo_url='https://helm.localstack.cloud', repo_name='localstack-repo', values='./common-infrastructure/localstack/values.yaml')
 k8s_resource('localstack', labels=['localstack'], port_forwards=4566)
 
 k8s_resource('pact-postgres', labels=['pact-broker'])
