@@ -1,4 +1,5 @@
 fullNameOverride: auth-frontend-deployment
+domain: fe.sso.kidsloop.live
 
 databases:
   userDb:
@@ -12,5 +13,8 @@ authFrontend:
   tag: master
 
 ingress:
-  enabled: false
-
+  enabled: true
+  tls:
+    - secretName: kidsloop-local-tls-secret
+      hosts:
+        - "fe.sso.kidsloop.live"

@@ -4,7 +4,7 @@ load('./utils/Tiltfile', 'info')
 load('./utils/Tiltfile', 'warn_missing_repo')
 
 
-local_resource(name='import_images', cmd='./import_images.sh')
+# local_resource(name='import_images', cmd='./import_images.sh')
 
 # required
 include('./common-infrastructure/Tiltfile')
@@ -15,26 +15,26 @@ if not os.path.exists('../kidsloop-helm-charts'):
 else:
     info('skipping clone, the repository is already present: KL-Infrastructure/kidsloop-helm-charts')
 
-# optional resources, load only when repositories exist at the given path
-if os.path.exists('../kidsloop-cms-service'):
-    load_dynamic('./cms-backend-service/Tiltfile')
-else:
-    warn_missing_repo('kidsloop-cms-service')
-
-if os.path.exists('../cms-frontend-service'):
-    load_dynamic('./cms-frontend-service/Tiltfile')
-else:
-    warn_missing_repo('cms-frontend-service')
+# # optional resources, load only when repositories exist at the given path
+# if os.path.exists('../cms-backend-service'):
+#     load_dynamic('./cms-backend-service/Tiltfile')
+# else:
+#     warn_missing_repo('kidsloop-cms-service')
+#
+# if os.path.exists('../cms-frontend-service'):
+#     load_dynamic('./cms-frontend-service/Tiltfile')
+# else:
+#     warn_missing_repo('cms-frontend-service')
 
 if os.path.exists('../user-service'):
     load_dynamic('./user-service/Tiltfile')
 else:
     warn_missing_repo('user-service')
-
-if os.path.exists('../kidsloop-xapi-service'):
-    load_dynamic('./xapi-service/Tiltfile')
-else:
-    warn_missing_repo('kidsloop-xapi-service')
+#
+# if os.path.exists('../kidsloop-xapi-service'):
+#     load_dynamic('./xapi-service/Tiltfile')
+# else:
+#     warn_missing_repo('kidsloop-xapi-service')
 
 if os.path.exists('../kidsloop-auth-server'):
     load_dynamic('./auth-backend-service/Tiltfile')

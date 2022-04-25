@@ -2,5 +2,6 @@ docker_build('auth-service', '../../kidsloop-auth-server/')
 
 k8s_yaml('./secrets.yaml')
 k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/auth-backend', name='auth-service-deployment', values='./values.yaml'))
+#k8s_yaml('./istio.yaml')
 
 k8s_resource('auth-service-deployment', labels=['auth-service'], port_forwards=8007, resource_deps=['user-service-postgres'])
