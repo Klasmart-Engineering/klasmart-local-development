@@ -8,8 +8,32 @@ spec:
   gateways:
     - local-gateway
   http:
-    - route:
+    - name: user
+      match:
+        - uri:
+            exact: /playground
+        - uri:
+            exact: /user
+      route:
+        - destination:
+            host: user-service-deployment-svc
+            port:
+              number: 80
+    - name: auth-backend
+      match:
+        - uri:
+            exact: /transfer
+        - uri:
+            exact: /refresh
+      route:
+        - destination:
+            host: auth-service-deployment-svc
+            port:
+              number: 80
+    - name: auth-frontend
+      route:
         - destination:
             host: auth-frontend-deployment-svc
             port:
               number: 80
+    
