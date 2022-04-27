@@ -12,6 +12,8 @@ spec:
       match:
         - uri:
             exact: /user
+        - uri:
+            exact: /playground
       route:
         - destination:
             host: user-service-deployment-svc
