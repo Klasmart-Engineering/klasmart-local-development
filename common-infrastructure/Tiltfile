@@ -17,6 +17,8 @@
 # helm_repo('istio-repo', 'https://istio-release.storage.googleapis.com/charts', labels=['shared-infrastructure'])
 # helm_resource(name='base', chart='istio/base', namespace='istio-system', labels=['shared-infrastructure'])
 # helm_resource(name='istiod', chart='istio/istiod', namespace='istio-system', labels=['shared-infrastructure'])
-# helm_resource(name='gateway', chart='istio/gateway', namespace='istio-system', labels=['shared-infrastructure'], port_forwards=['8080:80', '8081:443'])
+# helm_resource(name='gateway', chart='istio/gateway', namespace='istio-system', labels=['shared-infrastructure']) # port_forwards=['8080:80', '8081:443']
+# helm_resource(name='istio-operator', chart='../istio-1.13.3/manifests/charts/istio-operator', namespace='istio-operator', labels=['shared-infrastructure'])
 
 k8s_yaml('./local-gateway.yaml')
+k8s_yaml('./virtual-server.yaml')

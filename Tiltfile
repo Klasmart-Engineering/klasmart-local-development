@@ -46,6 +46,11 @@ if os.path.exists('../iam-auth-frontend'):
 else:
     warn_missing_repo('iam-auth-frontend')
 
+if os.path.exists('../kidsloop-hub-frontend'):
+    load_dynamic('./hub-frontend/Tiltfile')
+else:
+    warn_missing_repo('hub-frontend')
+
 # if os.path.exists('../kidsloop-assessment-service'):  # dynamodb hard dependency
 #     load_dynamic('./assessment-service/Tiltfile')
 # else:

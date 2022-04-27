@@ -6,15 +6,9 @@ databases:
     hostname: user-service-postgres
 
 authFrontend:
-#  repository:  registry.local:5000/auth-frontend
   repository:  auth-frontend
   pullPolicy: Always
-#  tag: azure-loadtest-b343a19
   tag: master
 
 ingress:
-  enabled: true
-  tls:
-    - secretName: kidsloop-local-tls-secret
-      hosts:
-        - "fe.sso.kidsloop.live"
+  enabled: false

@@ -1,4 +1,5 @@
 fullNameOverride: user-service-deployment
+domain: fe.sso.kidsloop.live
 
 userService:
   repository: user-service
@@ -12,6 +13,9 @@ userService:
   assets:
     bucketName: bucket1
     bucketRegion: bucket2
+
+  log:
+    level: debug
 
 serviceAccount:
   annotations:

@@ -1,0 +1,10 @@
+fullNameOverride: hub-frontend-deployment
+domain: fe.sso.kidsloop.live
+
+hubFrontend:
+  repository: hub-frontend
+  pullPolicy: Always
+  tag: master
+
+ingress:
+  enabled: false

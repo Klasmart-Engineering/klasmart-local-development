@@ -1,0 +1,5 @@
+docker_build('hub-frontend', '../../kidsloop-hub-frontend/deploy/')
+
+k8s_yaml(helm('../../kidsloop-helm-charts/helm/charts/hub-frontend', name='hub-frontend-deployment', values='./values.yaml'))
+
+k8s_resource('hub-frontend-deployment', labels=['hub-frontend'])

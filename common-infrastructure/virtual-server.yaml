@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: auth-route
+spec:
+  hosts:
+    - '*'
+  gateways:
+    - local-gateway
+  http:
+    - name: user
+      match:
+        - uri:
+            exact: /user
+      route:
+        - destination:
+            host: user-service-deployment-svc
+            port:
+              number: 80
+    - name: backend
+      match:
+        - uri:
+            exact: /transfer
+        - uri:
+            exact: /refresh
+        - uri:
+            exact: /switch
+        - uri:
+            exact: /signout
+      route:
+        - destination:
+            host: auth-service-deployment-svc
+            port:
+              number: 80
+    - name: frontend
+      route:
+        - destination:
+            host: auth-frontend-deployment-svc
+            port:
+              number: 80
+
