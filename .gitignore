@@ -3,5 +3,4 @@
 scripts/.certs
 scripts/istio*
 scripts/*.pem
-istio*
-istio*
+istio-*

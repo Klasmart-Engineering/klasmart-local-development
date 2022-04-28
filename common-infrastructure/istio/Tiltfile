@@ -1,0 +1,24 @@
+load('ext://helm_resource', 'helm_resource', 'helm_repo')
+helm_repo('istio-repo', 'https://istio-release.storage.googleapis.com/charts', labels=['shared-infrastructure'])
+
+local_resource(
+    name='Istio-Namespaces',
+    cmd='./namespaces.sh',
+    labels=['shared-infrastructure']
+)
+
+helm_resource(name='base', chart='istio/base', namespace='istio-system', labels=['shared-infrastructure'])
+helm_resource(name='istiod', chart='istio/istiod', namespace='istio-system', labels=['shared-infrastructure'])
+helm_resource(name='istio-operator', chart='../../istio-1.13.3/manifests/charts/istio-operator', namespace='istio-operator', labels=['shared-infrastructure'])
+
+
+local_resource(
+    name='TLS-secret',
+    cmd='kubectl -n istio-system create secret tls kidsloop-local-tls-secret --key=../../.certs/key.pem --cert=../../.certs/cert.pem --dry-run=client -o yaml | kubectl apply -f -',
+    labels=['shared-infrastructure']
+)
+
+
+k8s_yaml('./local-gateway.yaml')
+k8s_yaml('./virtual-server.yaml')
+k8s_yaml('./control-plane.yaml')
